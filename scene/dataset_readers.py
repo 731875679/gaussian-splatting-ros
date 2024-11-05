@@ -8,7 +8,6 @@
 #
 # For inquiries contact  george.drettakis@inria.fr
 #
-
 import os
 import sys
 from PIL import Image
@@ -44,6 +43,7 @@ class SceneInfo(NamedTuple):
     nerf_normalization: dict
     ply_path: str
     is_nerf_synthetic: bool
+    
 
 def getNerfppNorm(cam_info):
     def get_center_and_diag(cam_centers):

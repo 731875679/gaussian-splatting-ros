@@ -9,9 +9,17 @@
 # For inquiries contact  george.drettakis@inria.fr
 #
 
+import threading
 import numpy as np
 import collections
 import struct
+import rospy
+from geometry_msgs.msg import PoseStamped
+import numpy as np
+from threading import Lock, Thread
+from geometry_msgs.msg import PoseStamped
+from tf.transformations import quaternion_matrix
+
 
 CameraModel = collections.namedtuple(
     "CameraModel", ["model_id", "model_name", "num_params"])
