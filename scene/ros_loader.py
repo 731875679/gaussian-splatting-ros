@@ -157,6 +157,7 @@ class KeyframeProcessor:
         image_name = f"{frame_id}.png"
         try:
             cv_image = self.bridge.imgmsg_to_cv2(rgb_msg, "bgr8")
+            pil_image = Image.fromarray(cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB))
         except Exception as e:
             rospy.logwarn("Failed to convert ROS Image to CV2 for frame_id: %d, error: %s", frame_id, e)
             return
@@ -171,8 +172,9 @@ class KeyframeProcessor:
         #     # rospy.loginfo("Image saved to %s", image_path)
         # except Exception as e:
         #     rospy.logwarn("Failed to save image for frame_id: %d, error: %s", frame_id, e)  
-                  
-        cam_info = CameraInfo(uid=uid, R=R, T=T, FovY=FovY, FovX=FovX, depth_params={},
+        
+
+        cam_info = CameraInfo(uid=uid, R=R, T=T, FovY=FovY, FovX=FovX, depth_params={}, image=pil_image,
                               image_path=image_path, image_name=image_name, depth_path="",
                               width=width, height=height, is_test=False)
         

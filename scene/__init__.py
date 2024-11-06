@@ -29,8 +29,8 @@ class Scene:
     gaussians: GaussianModel
     args: ModelParams
     use_ros: bool
-
-    def __init__(self, args: ModelParams, gaussians: GaussianModel, load_iteration=None, shuffle=True, resolution_scales=[1.0], use_ros=True):
+    
+    def __init__(self, args: ModelParams, gaussians: GaussianModel, load_iteration=None, shuffle=True, resolution_scales=[1.0], use_ros=False):
         """param path: Path to colmap scene main folder."""
         self.model_path = args.model_path
         self.loaded_iter = None
@@ -48,7 +48,7 @@ class Scene:
         self.train_cameras = {}
         self.test_cameras = {}
         
-        if use_ros:
+        if self.use_ros:
             self.processor = KeyframeProcessor(args.source_path)
             scene_info = self.processor.create_scene_info()                        
         else: 

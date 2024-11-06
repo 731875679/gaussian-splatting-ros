@@ -141,6 +141,7 @@ def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoi
         loss.backward()
 
         iter_end.record()
+        torch.cuda.synchronize()  # 确保所有 CUDA 操作完成
 
         with torch.no_grad():
             # Progress bar
